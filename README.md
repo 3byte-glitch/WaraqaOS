@@ -24,3 +24,5 @@ Currently on a Pre-release version, **Pre-release 1.0.1** . There is so much to 
 *  **Text editor:** A custom text editor for editing text.
 *  **File management system:** A custom file management system for saving and loading text.
 *  **Custom programming language:** INFBOX, an esoteric programming language currently new and in development.
+
+Check out the full [OS Guide](HELP.md) to learn how to use the OS!
