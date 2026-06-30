@@ -10,9 +10,9 @@ A simple, interactive Operating System simulator built from scratch in C++. This
 
 ## Download
 
-1. Look at the right side in this github page
-2. Go to 'releases'
-3. Download the latest WaraqaOS.exe release
+1. Click [here](https://github.com/3byte-glitch/WaraqaOS/releases).
+2. Go to the latest release and open "assests"
+3. Double click the zip file (You can download the source code if you want)
 4. Enjoy!
 
 ## Development
