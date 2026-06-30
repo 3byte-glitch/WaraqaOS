@@ -12,12 +12,12 @@ A simple, interactive Operating System simulator built from scratch in C++. This
 
 1. Look at the right side in this github page
 2. Go to 'releases'
-3. Download the latest WaraqaOS release
+3. Download the latest WaraqaOS.exe release
 4. Enjoy!
 
 ## Development
 
-This is the first BETA version, **BETA 1.0.0** . There is so much to see later. Please check my codes and give me feedback to improve on!
+Currently on the first Pre-release version, **Pre-release 1.0.0** . There is so much to see later. Please check my codes and give me feedback to improve on!
 
 ## What's next? 
 
