@@ -2,14 +2,17 @@
 #include "../../user.h"
 #include <iostream>
 #include <string>
-#include <list>
 #include <vector>
 #include <ctime>
+#include <cctype>
+#include <algorithm>
 #include <iomanip>
 
+vector<string> history; // Command history
+
 using namespace std;
+void echo(string input, string username);
 void start_cmd(User &user) {
-    vector<string> history; // Command history
     cout << "CMD LINE loaded.. type 'help' to show commands\n";
     while (true) {
         // Command loop
@@ -29,19 +32,7 @@ void start_cmd(User &user) {
         } else if (user.cmd == "clear") {
             cout << "\033[2J\033[1;1H"; // Clear screen
         } else if (user.cmd.find("echo ") == 0) {
-            if (user.cmd == "echo $USER") {
-                cout << user.username;
-            } else if (user.cmd == "echo $HISTORY") {
-                for (const string& h : history) {
-                    cout << h << '\n';
-                }
-            } else if (user.cmd == "echo $TIME") {
-                cout << put_time(local_time, "%H:%M") << '\n';
-            } else if (user.cmd == "echo $DATE") {
-                cout << put_time(local_time, "%d/%m/%Y") << '\n';
-            } else {
-                cout << user.cmd.substr(5) << '\n';
-            }
+            echo(user.cmd, user.username);
         } else if (user.cmd == "lock") {
             if (user.password == "") {
                 cout << "Cannot lock system without a password\n";
@@ -66,5 +57,42 @@ void start_cmd(User &user) {
         } else {
             cout << "Unavailable command\n";
         }
+    }
+}
+void echo(string input, string username) {
+    time_t now = time(nullptr);
+    tm* local_time = localtime(&now);
+    string text;
+    if (input == "echo $USER") {
+        cout << username;
+    } else if (input == "echo $HISTORY") {
+        for (const string& h : history) {
+            cout << h << '\n';
+        }
+    } else if (input == "echo $TIME") {
+        cout << put_time(local_time, "%H:%M") << '\n';
+    } else if (input == "echo $DATE") {
+        cout << put_time(local_time, "%d/%m/%Y") << '\n';
+    } else if (input.substr(5, 7) == "$UPPER ") {
+        text = input.substr(12);
+        transform(text.begin(), text.end(), text.begin(), [](unsigned char c) {
+            return toupper(c);
+        });
+        cout << text << '\n';
+    } else if (input.substr(5, 7) == "$LOWER ") {
+        text = input.substr(12);
+        transform(text.begin(), text.end(), text.begin(), [](unsigned char c) {
+            return tolower(c);
+        });
+        cout << text << '\n';
+    } else if (input.substr(5, 7) == "$COUNT ") {
+        text = input.substr(12);
+        cout << text.length() << '\n';
+    } else if (input.substr(5, 9) == "$REVERSE ") {
+        text = input.substr(14);
+        reverse(text.begin(), text.end());
+        cout << text << '\n';
+    } else  {
+        cout << input.substr(5) << '\n';
     }
 }
