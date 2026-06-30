@@ -38,3 +38,5 @@ Prints the user's command history
 Print the current time
 #### 4. $DATE
 Print the current date
+
+[Return to the main repository page](https://github.com/3byte-glitch/WaraqaOS/)
